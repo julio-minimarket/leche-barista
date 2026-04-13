@@ -222,12 +222,6 @@
     <p>Calculá las proporciones exactas para el tenor graso deseado</p>
   </div>
 
-  <!-- Banner instalar como app -->
-  <div id="installBanner" class="hidden">
-    <span>📲 Instalá como app para acceso rápido</span>
-    <button id="installBtn">Instalar</button>
-    <button class="close-btn" onclick="document.getElementById('installBanner').classList.add('hidden')">✕</button>
-  </div>
 
   <!-- Cantidad -->
   <div class="section">
@@ -328,23 +322,6 @@
         .catch(err => console.log('SW error:', err));
     });
   }
-
-  // --- Botón instalar (PWA install prompt) ---
-  let deferredPrompt;
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    document.getElementById('installBanner').classList.remove('hidden');
-  });
-
-  document.getElementById('installBtn').addEventListener('click', async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      deferredPrompt = null;
-      document.getElementById('installBanner').classList.add('hidden');
-    }
-  });
 
   // --- Lógica de la calculadora ---
   let currentW = 125;
